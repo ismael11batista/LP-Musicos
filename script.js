@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize EmailJS
+  emailjs.init("ctxW9xYNaeSb80VmR");
+  
   // Set current year in footer
   document.getElementById('currentYear').textContent = new Date().getFullYear();
   
@@ -115,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const nameError = document.getElementById('nameError');
   const emailError = document.getElementById('emailError');
   const messageError = document.getElementById('messageError');
+  const submitText = document.getElementById('submitText');
+  const loadingIcon = document.getElementById('loadingIcon');
   
   contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -144,21 +149,64 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (isValid) {
-      // In a real app, you would send the form data to your server here
-      // For now, we'll just show a success toast
-      showToast('Mensagem enviada com sucesso!');
+      // Show loading state
+      submitText.classList.add('hidden');
+      loadingIcon.classList.remove('hidden');
       
-      // Reset form
-      contactForm.reset();
+      // Get form values
+      const nome = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const mensagem = messageInput.value.trim();
+      
+      // Send email using EmailJS
+      emailjs.send("service_brgit2i", "template_cuugplo", {
+        name: nome,
+        email: email,
+        message: mensagem
+      })
+      .then(function() {
+        // Show success toast
+        showToast('Mensagem enviada com sucesso!');
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Hide loading state
+        submitText.classList.remove('hidden');
+        loadingIcon.classList.add('hidden');
+      })
+      .catch(function(error) {
+        console.error('EmailJS error:', error);
+        
+        // Show error toast
+        showToast('Erro ao enviar mensagem. Tente novamente.', 'error');
+        
+        // Hide loading state
+        submitText.classList.remove('hidden');
+        loadingIcon.classList.add('hidden');
+      });
     }
   });
   
   // Toast notification
   const toast = document.getElementById('toast');
   
-  function showToast(message) {
+  function showToast(message, type = 'success') {
     const toastMessage = document.querySelector('.toast-message');
+    const toastIcon = document.querySelector('.toast-icon');
+    
     toastMessage.textContent = message;
+    
+    // Set toast style based on type
+    if (type === 'error') {
+      toast.classList.add('error');
+      toastIcon.classList.remove('fa-check-circle');
+      toastIcon.classList.add('fa-times-circle');
+    } else {
+      toast.classList.remove('error');
+      toastIcon.classList.remove('fa-times-circle');
+      toastIcon.classList.add('fa-check-circle');
+    }
     
     toast.classList.add('show');
     

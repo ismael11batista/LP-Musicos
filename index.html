@@ -23,6 +23,9 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- EmailJS library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   </head>
   <body>
     <div id="root">
@@ -302,7 +305,7 @@
                 </blockquote>
                 <div class="testimonial-author">
                   <p class="author-name">Maristela Spricigo</p>
-                  <p class="author-event">Evento Corporativo</p>
+                  <p class="author-event">Aniversário de 50 anos</p>
                 </div>
               </div>
               
@@ -316,17 +319,17 @@
                   <i class="fas fa-star"></i>
                 </div>
                 <blockquote>
-                  "Nossa, que show! Vocês arrasaram. Ainda estou cantarolando as músicas. Muito obrigado por tornar nosso dia tão especial."
+                  "Vocês são fenomenais! Fizeram nossa cerimônia muito mais especial e emocionante. Todos ficaram encantados com a qualidade musical. Gratidão!"
                 </blockquote>
                 <div class="testimonial-author">
-                  <p class="author-name">Ana Carolina Voigt</p>
-                  <p class="author-event">Aniversário - Florianópolis</p>
+                  <p class="author-name">Rafael Martins</p>
+                  <p class="author-event">Cerimônia de Casamento</p>
                 </div>
               </div>
             </div>
             
-            <!-- Slider controls -->
-            <div class="testimonial-controls">
+            <!-- Slider navigation -->
+            <div class="testimonial-nav">
               <button class="testimonial-btn prev" disabled>
                 <i class="fas fa-chevron-left"></i>
               </button>
@@ -340,114 +343,51 @@
       
       <!-- Contact Section -->
       <section id="contact" class="contact">
-        <!-- Decorative elements -->
         <div class="decorative-icons">
           <div class="icon-top-left">
-            <i class="fa-solid fa-music"></i>
+            <i class="fa-solid fa-microphone"></i>
           </div>
           <div class="icon-bottom-right">
-            <i class="fa-solid fa-guitar"></i>
+            <i class="fa-solid fa-headphones"></i>
           </div>
         </div>
         
         <div class="container">
-          <div class="contact-container">
-            <!-- Section header -->
-            <div class="section-heading">
-              <h2><span class="gold-border">Entre em Contato</span></h2>
-              <p>Estamos ansiosos para fazer parte do seu evento especial. Preencha o formulário abaixo e entraremos em contato em até 24 horas.</p>
-            </div>
-            
-            <!-- Contact form -->
+          <!-- Section header -->
+          <div class="section-heading">
+            <h2><span class="gold-border">Entre em Contato</span></h2>
+            <p>Estamos ansiosos para fazer parte do seu evento especial. Preencha o formulário abaixo e entraremos em contato o mais breve possível.</p>
+          </div>
+          
+          <!-- Contact card -->
+          <div class="contact-card-container">
             <div class="contact-card">
-              <div class="contact-grid">
-                <!-- Contact info -->
-                <div class="contact-info">
-                  <!-- Background decorative elements -->
-                  <div class="contact-bg-icons">
-                    <i class="fa-solid fa-music" style="top: 10%; left: 20%;"></i>
-                    <i class="fa-solid fa-guitar" style="top: 60%; left: 60%;"></i>
-                    <i class="fas fa-violin" style="top: 40%; left: 80%;"></i>
-                  </div>
-                  
-                  <h3>Informações de Contato</h3>
-                  
-                  <div class="contact-details">
-                    <div class="contact-item">
-                      <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                      <div class="contact-text">
-                        <h4>Localização</h4>
-                        <p>Orleans, SC - Brasil</p>
-                        <p>Disponíveis para viagens</p>
-                      </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                      <div class="contact-text">
-                        <h4>Email</h4>
-                        <p>ismael11batista@gmail.com</p>
-                      </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                      <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                      <div class="contact-text">
-                        <h4>Telefone</h4>
-                        <p>(48) 99199-4246</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <!-- Social media -->
-                  <div class="social-media">
-                    <h4>Siga-nos</h4>
-                    <div class="social-icons">
-                      <a href="https://www.instagram.com/ismaelllbatista/" class="social-icon">
-                        <i class="fab fa-instagram"></i>
-                      </a>
-                      <a href="https://www.facebook.com/profile.php?id=100081798843855" class="social-icon">
-                        <i class="fab fa-facebook-f"></i>
-                      </a>
-                      <a href="https://www.youtube.com/@IsmaelBBatista" class="social-icon">
-                        <i class="fab fa-youtube"></i>
-                      </a>
-                      <a href="https://wa.link/mjpqme" class="social-icon">
-                        <i class="fab fa-whatsapp"></i>
-                      </a>
-                    </div>
-                  </div>
+              <form id="contactForm">
+                <div class="form-group">
+                  <label for="name">Nome Completo</label>
+                  <input type="text" id="name" name="name" required>
+                  <span class="error-message" id="nameError"></span>
                 </div>
                 
-                <!-- Form -->
-                <div class="contact-form">
-                  <form id="contactForm">
-                    <div class="form-group">
-                      <label for="name">Seu Nome</label>
-                      <input type="text" id="name" name="name" required>
-                      <p class="error-message" id="nameError"></p>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="email">Seu E-mail</label>
-                      <input type="email" id="email" name="email" required>
-                      <p class="error-message" id="emailError"></p>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="message">Sua Mensagem</label>
-                      <textarea id="message" name="message" rows="5" required></textarea>
-                      <p class="error-message" id="messageError"></p>
-                    </div>
-                    
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-block">
-                        Enviar Mensagem
-                      </button>
-                    </div>
-                  </form>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required>
+                  <span class="error-message" id="emailError"></span>
                 </div>
-              </div>
+                
+                <div class="form-group">
+                  <label for="message">Mensagem</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+                  <span class="error-message" id="messageError"></span>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                  <span id="submitText">Enviar Mensagem</span>
+                  <span id="loadingIcon" class="hidden">
+                    <i class="fas fa-spinner fa-spin"></i>
+                  </span>
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -457,20 +397,22 @@
       <footer class="footer">
         <div class="container">
           <div class="footer-grid">
-            <!-- Logo and brief description -->
-            <div class="footer-about">
-              <div class="footer-logo">
-                <span>Ismael & Gabriele</span>
+            <!-- About column -->
+            <div class="footer-column">
+              <h3 class="footer-title">Ismael & Gabriele</h3>
+              <p class="footer-text">Músicos profissionais transformando seu evento em uma experiência inesquecível.</p>
+              <div class="social-links">
+                <a href="https://www.instagram.com/ismaelllbatista/" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100081798843855" class="social-link"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.youtube.com/@IsmaelBBatista" class="social-link"><i class="fab fa-youtube"></i></a>
+                <a href="https://wa.link/mjpqme" class="social-link"><i class="fab fa-whatsapp"></i></a>
               </div>
-              <p>
-                Música de excelência para casamentos, eventos corporativos, aniversários e celebrações especiais.
-              </p>
             </div>
             
             <!-- Quick links -->
-            <div class="footer-links">
-              <h4>Links Rápidos</h4>
-              <ul>
+            <div class="footer-column">
+              <h3 class="footer-title">Links Rápidos</h3>
+              <ul class="footer-links">
                 <li><a href="#hero">Início</a></li>
                 <li><a href="#services">Serviços</a></li>
                 <li><a href="#about">Sobre Nós</a></li>
@@ -478,46 +420,40 @@
               </ul>
             </div>
             
-            <!-- Contact information -->
-            <div class="footer-contact">
-              <h4>Contato</h4>
-              <ul>
-                <li>
-                  <i class="fas fa-envelope"></i>
-                  <span>ismael11batista@gmail.com</span>
-                </li>
-                <li>
-                  <i class="fas fa-phone"></i>
-                  <span>(48) 99199-4246</span>
-                </li>
-                <li>
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span>Orleans, SC - Brasil</span>
-                </li>
+            <!-- Services -->
+            <div class="footer-column">
+              <h3 class="footer-title">Nossos Serviços</h3>
+              <ul class="footer-list">
+                <li>Casamentos</li>
+                <li>Festas de Aniversário</li>
+                <li>Eventos Corporativos</li>
+                <li>Cerimônias Religiosas</li>
+              </ul>
+            </div>
+            
+            <!-- Contact info -->
+            <div class="footer-column">
+              <h3 class="footer-title">Contato</h3>
+              <ul class="contact-list">
+                <li><i class="fas fa-map-marker-alt"></i> Orleans, Santa Catarina</li>
+                <li><i class="fas fa-phone"></i> (48) 99199-4246</li>
+                <li><i class="fas fa-envelope"></i> ismael11batista@gmail.com</li>
               </ul>
             </div>
           </div>
           
           <div class="footer-bottom">
-            <p>&copy; <span id="currentYear"></span> Ismael & Gabriele. Todos os direitos reservados.</p>
-            
-            <div class="footer-social">
-              <a href="https://www.instagram.com/ismaelllbatista/"><i class="fab fa-instagram"></i></a>
-              <a href="https://www.facebook.com/profile.php?id=100081798843855"><i class="fab fa-facebook-f"></i></a>
-              <a href="https://www.youtube.com/@IsmaelBBatista"><i class="fab fa-youtube"></i></a>
-              <a href="https://wa.link/mjpqme"><i class="fab fa-whatsapp"></i></a>
-            </div>
+            <p>&copy; <span id="currentYear">2025</span> Ismael & Gabriele - Todos os direitos reservados</p>
           </div>
         </div>
       </footer>
       
-      <!-- Toast notification for form submissions -->
+      <!-- Toast Notification -->
       <div id="toast" class="toast">
         <div class="toast-content">
           <i class="fas fa-check-circle toast-icon"></i>
           <div class="toast-message">Mensagem enviada com sucesso!</div>
         </div>
-        <div class="toast-progress"></div>
       </div>
     </div>
     
